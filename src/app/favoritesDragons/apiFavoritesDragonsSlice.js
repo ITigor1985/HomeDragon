@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const dragonsApi = createApi({
   reducerPath: "dragonsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://dragons-server.herokuapp.com/api",
+    baseUrl: "http://localhost:4000/api",
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
 
