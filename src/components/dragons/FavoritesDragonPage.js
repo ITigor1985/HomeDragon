@@ -32,16 +32,20 @@ let DragonExcerpt = ({ dragon, refetch }) => {
 export const FavoritesDragonPage = () => {
   const {
     data: dragons,
+    currentData,
     isFetching,
     isSuccess,
     refetch,
-  } = useGetFavoritesDragonsQuery();
-
+  } = useGetFavoritesDragonsQuery("", {
+    refetchOnMountOrArgChange: true
+  });
+  console.log(currentData);
+  console.log(dragons);
   let content;
   if (isFetching) {
     content = <Spinner text="Loading..." />;
   } else if (isSuccess) {
-    content = dragons.data.map((dragon) => (
+    content = currentData.data.map((dragon) => (
       <DragonExcerpt key={dragon._id} dragon={dragon} refetch={refetch} />
     ));
   }
